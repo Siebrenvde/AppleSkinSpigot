@@ -24,16 +24,6 @@ bukkitPluginYaml {
     website = "https://github.com/Siebrenvde/AppleSkinSpigot"
 }
 
-tasks.test {
-    useJUnit()
-    jvmArgs(
-        "--illegal-access=permit",
-        "--add-opens=java.base/java.lang=ALL-UNNAMED",
-        "--add-opens=java.base/java.util=ALL-UNNAMED",
-        "--add-opens=java.base/java.nio=ALL-UNNAMED"
-    )
-}
-
 val targetJavaVersion = 21
 java {
     val javaVersion = JavaVersion.toVersion(targetJavaVersion)
