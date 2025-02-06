@@ -21,7 +21,7 @@ public class AppleSkinSpigotPlugin extends JavaPlugin {
             EXHAUSTION_KEY = "appleskin:exhaustion_sync";
         }
 
-        syncTask = createSyncTask();
+        syncTask = new SyncTask(this);
 
         getServer().getPluginManager().registerEvents(new LoginListener(syncTask), this);
         syncTask.runTaskTimer(this, 0L, 1L);
@@ -31,14 +31,8 @@ public class AppleSkinSpigotPlugin extends JavaPlugin {
         messenger.registerOutgoingPluginChannel(this, EXHAUSTION_KEY);
     }
 
-    SyncTask createSyncTask() {
-        return new SyncTask(this);
-    }
-
     @Override
     public void onDisable() {
-        super.onDisable();
-
         if(syncTask != null) {
             syncTask.cancel();
             syncTask = null;

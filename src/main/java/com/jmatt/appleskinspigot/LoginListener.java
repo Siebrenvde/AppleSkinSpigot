@@ -1,6 +1,5 @@
 package com.jmatt.appleskinspigot;
 
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -8,7 +7,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class LoginListener implements Listener {
 
-    private SyncTask syncTask;
+    private final SyncTask syncTask;
 
     LoginListener(SyncTask syncTask) {
         this.syncTask = syncTask;
@@ -16,12 +15,12 @@ public class LoginListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        syncTask.onPlayerLogIn(event.getPlayer());
+        syncTask.removePreviousLevels(event.getPlayer().getUniqueId());
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
-        syncTask.onPlayerLogOut(event.getPlayer());
+        syncTask.removePreviousLevels(event.getPlayer().getUniqueId());
     }
 
 }
