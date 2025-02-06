@@ -13,18 +13,18 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
 }
 
 bukkitPluginYaml {
     main = "com.jmatt.appleskinspigot.AppleSkinSpigotPlugin"
     authors.add("jmatt")
     authors.add("Siebrenvde")
-    apiVersion = "1.20"
+    apiVersion = "1.17"
     website = "https://github.com/Siebrenvde/AppleSkinSpigot"
 }
 
-val targetJavaVersion = 21
+val targetJavaVersion = 16
 java {
     val javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
