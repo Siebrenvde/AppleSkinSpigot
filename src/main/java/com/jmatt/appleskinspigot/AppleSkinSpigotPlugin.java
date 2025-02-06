@@ -16,7 +16,7 @@ public class AppleSkinSpigotPlugin extends JavaPlugin {
         int minor = Integer.parseInt(version[1]);
         int patch = version.length > 2 ? Integer.parseInt(version[2]) : 0;
 
-        if(minor < 20 || (minor == 20 && patch < 4)) {
+        if(minor < 20 || (minor == 20 && patch <= 4)) {
             SATURATION_KEY = "appleskin:saturation_sync";
             EXHAUSTION_KEY = "appleskin:exhaustion_sync";
         }
