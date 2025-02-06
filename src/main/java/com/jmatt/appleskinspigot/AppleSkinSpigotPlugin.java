@@ -5,8 +5,8 @@ import org.bukkit.plugin.messaging.Messenger;
 
 public class AppleSkinSpigotPlugin extends JavaPlugin {
 
-    public static final String SATURATION_KEY = "appleskin:saturation_sync";
-    public static final String EXHAUSTION_KEY = "appleskin:exhaustion_sync";
+    public static final String SATURATION_KEY = "appleskin:saturation";
+    public static final String EXHAUSTION_KEY = "appleskin:exhaustion";
 
     private SyncTask syncTask = null;
 
