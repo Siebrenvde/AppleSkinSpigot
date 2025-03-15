@@ -12,7 +12,7 @@ public class AppleSkinSpigotPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        String[] version = getServer().getMinecraftVersion().split("\\.");
+        String[] version = getServer().getBukkitVersion().split("-")[0].split("\\.");
         int minor = Integer.parseInt(version[1]);
         int patch = version.length > 2 ? Integer.parseInt(version[2]) : 0;
 
