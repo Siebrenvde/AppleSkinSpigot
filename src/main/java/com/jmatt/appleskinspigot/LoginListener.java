@@ -1,26 +1,36 @@
 package com.jmatt.appleskinspigot;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LoginListener implements Listener {
 
-    private final SyncTask syncTask;
+    private final AppleSkinSpigotPlugin plugin;
 
-    LoginListener(SyncTask syncTask) {
-        this.syncTask = syncTask;
+    LoginListener(AppleSkinSpigotPlugin plugin) {
+        this.plugin = plugin;
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        syncTask.removePreviousLevels(event.getPlayer().getUniqueId());
+        if (plugin.syncTask() == null) plugin.createSyncTask();
+        plugin.syncTask().removePreviousLevels(event.getPlayer().getUniqueId());
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
-        syncTask.removePreviousLevels(event.getPlayer().getUniqueId());
+        plugin.syncTask().removePreviousLevels(event.getPlayer().getUniqueId());
+        List<Player> players = Bukkit.getOnlinePlayers().stream()
+            .filter(p -> !p.equals(event.getPlayer()))
+            .collect(Collectors.toList());
+        if (players.isEmpty()) plugin.cancelSyncTask();
     }
 
 }
