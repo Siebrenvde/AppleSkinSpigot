@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.2.0"
+    id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
 group = "com.jmatt"
@@ -22,6 +23,10 @@ bukkitPluginYaml {
     authors.add("Siebrenvde")
     apiVersion = "1.17"
     website = "https://github.com/Siebrenvde/AppleSkinSpigot"
+}
+
+tasks.runServer {
+    minecraftVersion("1.21.4")
 }
 
 val targetJavaVersion = 16
