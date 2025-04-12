@@ -26,7 +26,7 @@ bukkitPluginYaml {
 }
 
 tasks.runServer {
-    minecraftVersion("1.21.4")
+    minecraftVersion("1.21.5")
 }
 
 val targetJavaVersion = 16
