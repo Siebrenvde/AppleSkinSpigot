@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.jmatt"
-version = "1.4.0"
+version = "1.5.0"
 
 repositories {
     maven("https://repo.papermc.io/repository/maven-public/") {
@@ -26,7 +26,7 @@ bukkitPluginYaml {
 }
 
 tasks.runServer {
-    minecraftVersion("1.21.4")
+    minecraftVersion("1.21.5")
 }
 
 val targetJavaVersion = 16
