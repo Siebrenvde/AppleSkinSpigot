@@ -2,6 +2,7 @@ package com.jmatt.appleskinspigot;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,38 +16,38 @@ public class SyncTask extends BukkitRunnable {
     private final Map<UUID, Float> previousSaturationLevels;
     private final Map<UUID, Float> previousExhaustionLevels;
 
-    SyncTask(AppleSkinSpigot plugin) {
+    SyncTask(final AppleSkinSpigot plugin) {
         this.plugin = plugin;
-        previousSaturationLevels = new HashMap<>();
-        previousExhaustionLevels = new HashMap<>();
+        this.previousSaturationLevels = new HashMap<>();
+        this.previousExhaustionLevels = new HashMap<>();
     }
 
     @Override
     public void run() {
-        for(Player player : plugin.getServer().getOnlinePlayers()) {
-            updatePlayer(player);
+        for (final Player player : this.plugin.getServer().getOnlinePlayers()) {
+            this.updatePlayer(player);
         }
     }
 
-    private void updatePlayer(Player player) {
-        float saturation = player.getSaturation();
-        Float previousSaturation = previousSaturationLevels.get(player.getUniqueId());
-        if(previousSaturation == null || saturation != previousSaturation) {
-            player.sendPluginMessage(plugin, AppleSkinSpigot.SATURATION_KEY, ByteBuffer.allocate(Float.BYTES).putFloat(saturation).array());
-            previousSaturationLevels.put(player.getUniqueId(), saturation);
+    private void updatePlayer(final Player player) {
+        final float saturation = player.getSaturation();
+        final Float previousSaturation = this.previousSaturationLevels.get(player.getUniqueId());
+        if (previousSaturation == null || saturation != previousSaturation) {
+            player.sendPluginMessage(this.plugin, AppleSkinSpigot.SATURATION_KEY, ByteBuffer.allocate(Float.BYTES).putFloat(saturation).array());
+            this.previousSaturationLevels.put(player.getUniqueId(), saturation);
         }
 
-        float exhaustion = player.getExhaustion();
-        Float previousExhaustion = previousExhaustionLevels.get(player.getUniqueId());
-        if(previousExhaustion == null || Math.abs(exhaustion - previousExhaustion) >= MINIMUM_EXHAUSTION_CHANGE_THRESHOLD) {
-            player.sendPluginMessage(plugin, AppleSkinSpigot.EXHAUSTION_KEY, ByteBuffer.allocate(Float.BYTES).putFloat(exhaustion).array());
-            previousExhaustionLevels.put(player.getUniqueId(), exhaustion);
+        final float exhaustion = player.getExhaustion();
+        final Float previousExhaustion = this.previousExhaustionLevels.get(player.getUniqueId());
+        if (previousExhaustion == null || Math.abs(exhaustion - previousExhaustion) >= MINIMUM_EXHAUSTION_CHANGE_THRESHOLD) {
+            player.sendPluginMessage(this.plugin, AppleSkinSpigot.EXHAUSTION_KEY, ByteBuffer.allocate(Float.BYTES).putFloat(exhaustion).array());
+            this.previousExhaustionLevels.put(player.getUniqueId(), exhaustion);
         }
     }
 
-    void removePreviousLevels(UUID uuid) {
-        previousSaturationLevels.remove(uuid);
-        previousExhaustionLevels.remove(uuid);
+    void removePreviousLevels(final UUID uuid) {
+        this.previousSaturationLevels.remove(uuid);
+        this.previousExhaustionLevels.remove(uuid);
     }
 
 }

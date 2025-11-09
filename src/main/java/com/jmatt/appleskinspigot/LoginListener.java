@@ -14,23 +14,23 @@ public class LoginListener implements Listener {
 
     private final AppleSkinSpigot plugin;
 
-    LoginListener(AppleSkinSpigot plugin) {
+    LoginListener(final AppleSkinSpigot plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        if (plugin.syncTask() == null) plugin.createSyncTask();
-        plugin.syncTask().removePreviousLevels(event.getPlayer().getUniqueId());
+    public void onPlayerJoin(final PlayerJoinEvent event) {
+        if (this.plugin.syncTask() == null) this.plugin.createSyncTask();
+        this.plugin.syncTask().removePreviousLevels(event.getPlayer().getUniqueId());
     }
 
     @EventHandler
-    public void onPlayerLeave(PlayerQuitEvent event) {
-        plugin.syncTask().removePreviousLevels(event.getPlayer().getUniqueId());
-        List<Player> players = Bukkit.getOnlinePlayers().stream()
+    public void onPlayerLeave(final PlayerQuitEvent event) {
+        this.plugin.syncTask().removePreviousLevels(event.getPlayer().getUniqueId());
+        final List<Player> players = Bukkit.getOnlinePlayers().stream()
             .filter(p -> !p.equals(event.getPlayer()))
             .collect(Collectors.toList());
-        if (players.isEmpty()) plugin.cancelSyncTask();
+        if (players.isEmpty()) this.plugin.cancelSyncTask();
     }
 
 }

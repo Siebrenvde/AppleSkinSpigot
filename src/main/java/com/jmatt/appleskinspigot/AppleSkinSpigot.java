@@ -6,7 +6,7 @@ import org.bukkit.plugin.messaging.Messenger;
 
 public class AppleSkinSpigot extends JavaPlugin {
 
-    public static AppleSkinSpigot INSTANCE;
+    private static AppleSkinSpigot instance;
 
     public static final String SATURATION_KEY = "appleskin:saturation";
     public static final String EXHAUSTION_KEY = "appleskin:exhaustion";
@@ -16,16 +16,16 @@ public class AppleSkinSpigot extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        INSTANCE = this;
+        instance = this;
 
-        String[] version = getServer().getBukkitVersion().split("-")[0].split("\\.");
-        int minor = Integer.parseInt(version[1]);
-        int patch = version.length > 2 ? Integer.parseInt(version[2]) : 0;
+        final String[] version = getServer().getBukkitVersion().split("-")[0].split("\\.");
+        final int minor = Integer.parseInt(version[1]);
+        final int patch = version.length > 2 ? Integer.parseInt(version[2]) : 0;
 
-        PluginManager manager = getServer().getPluginManager();
+        final PluginManager manager = getServer().getPluginManager();
         manager.registerEvents(new LoginListener(this), this);
 
-        Messenger messenger = getServer().getMessenger();
+        final Messenger messenger = getServer().getMessenger();
         messenger.registerOutgoingPluginChannel(this, SATURATION_KEY);
         messenger.registerOutgoingPluginChannel(this, EXHAUSTION_KEY);
 
@@ -33,7 +33,7 @@ public class AppleSkinSpigot extends JavaPlugin {
         if (minor > 21 || (minor == 21 && patch >= 3)) {
             messenger.registerOutgoingPluginChannel(this, NATURAL_REGENERATION_KEY);
             manager.registerEvents(new GameRuleListener(), this);
-            if (isPaper()) manager.registerEvents(new GameRuleListener.Paper(), this);
+            if (this.isPaper()) manager.registerEvents(new GameRuleListener.Paper(), this);
         }
     }
 
@@ -41,48 +41,53 @@ public class AppleSkinSpigot extends JavaPlugin {
      * {@return the current sync task}
      */
     public SyncTask syncTask() {
-        return syncTask;
+        return this.syncTask;
     }
 
     /**
      * Creates a new sync task and schedules it
-     * <p>
-     * If a sync task already exists, it will be cancelled
+     *
+     * <p>If a sync task already exists, it will be cancelled</p>
      */
     public void createSyncTask() {
-        cancelSyncTask();
-        syncTask = new SyncTask(this);
-        syncTask.runTaskTimer(this, 0L, 1L);
+        this.cancelSyncTask();
+        this.syncTask = new SyncTask(this);
+        this.syncTask.runTaskTimer(this, 0L, 1L);
     }
 
     /**
      * Cancels the current sync task
      */
     public void cancelSyncTask() {
-        if (syncTask != null) {
-            syncTask.cancel();
-            syncTask = null;
+        if (this.syncTask != null) {
+            this.syncTask.cancel();
+            this.syncTask = null;
         }
     }
 
     @Override
     public void onDisable() {
-        cancelSyncTask();
+        this.cancelSyncTask();
+    }
+
+    public static AppleSkinSpigot getInstance() {
+        return instance;
     }
 
     /**
      * Checks whether the current server is a Paper server
+     *
      * @return <code>true</code> if the server is a Paper server
      */
     private boolean isPaper() {
         try {
             Class.forName("io.papermc.paper.configuration.Configuration");
             return true;
-        } catch (ClassNotFoundException ignored) {
+        } catch (final ClassNotFoundException ignored) {
             try {
                 Class.forName("com.destroystokyo.paper.PaperConfig");
                 return true;
-            } catch (ClassNotFoundException ignored1) {}
+            } catch (final ClassNotFoundException ignored1) { }
         }
         return false;
     }

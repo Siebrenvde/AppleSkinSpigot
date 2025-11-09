@@ -15,29 +15,31 @@ import java.nio.ByteBuffer;
 public class GameRuleListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin(final PlayerJoinEvent event) {
         Bukkit.getScheduler().runTaskLater(
-            AppleSkinSpigot.INSTANCE,
-            () -> { if (event.getPlayer().isOnline()) sendNaturalRegenState(event.getPlayer()); },
+            AppleSkinSpigot.getInstance(),
+            () -> {
+                if (event.getPlayer().isOnline()) this.sendNaturalRegenState(event.getPlayer());
+            },
             20L
         );
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
-        sendNaturalRegenState(event.getPlayer());
+    public void onPlayerChangedWorld(final PlayerChangedWorldEvent event) {
+        this.sendNaturalRegenState(event.getPlayer());
     }
 
-    private void sendNaturalRegenState(Player player) {
+    private void sendNaturalRegenState(final Player player) {
         sendNaturalRegenState(
             player,
             Boolean.TRUE.equals(player.getWorld().getGameRuleValue(GameRule.NATURAL_REGENERATION))
         );
     }
 
-    private static void sendNaturalRegenState(Player player, boolean state) {
+    private static void sendNaturalRegenState(final Player player, final boolean state) {
         player.sendPluginMessage(
-            AppleSkinSpigot.INSTANCE,
+            AppleSkinSpigot.getInstance(),
             AppleSkinSpigot.NATURAL_REGENERATION_KEY,
             ByteBuffer.allocate(1).put((byte) (state ? 1 : 0)).array()
         );
@@ -46,7 +48,7 @@ public class GameRuleListener implements Listener {
     public static class Paper implements Listener {
 
         @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-        public void onGameRuleChange(WorldGameRuleChangeEvent event) {
+        public void onGameRuleChange(final WorldGameRuleChangeEvent event) {
             if (event.getGameRule() != GameRule.NATURAL_REGENERATION) return;
             event.getWorld().getPlayers().forEach(player -> {
                 sendNaturalRegenState(player, Boolean.parseBoolean(event.getValue()));

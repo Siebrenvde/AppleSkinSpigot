@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("net.kyori.indra") version "4.0.0"
+    id("net.kyori.indra.checkstyle") version "4.0.0"
     id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.3.1"
     id("xyz.jpenilla.run-paper") version "3.0.2"
 }
@@ -34,6 +35,7 @@ indra {
     javaVersions {
         target(21)
     }
+    checkstyle("12.1.1")
 }
 
 tasks.withType<Jar> {

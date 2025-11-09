@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+
+    <!-- https://checkstyle.org/filefilters/beforeexecutionexclusionfilefilter.html -->
+    <module name="BeforeExecutionExclusionFileFilter">
+        <property name="fileNamePattern" value="module\-info\.java$"/>
+    </module>
+
+    <!-- https://checkstyle.org/checks/whitespace/filetabcharacter.html -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <!-- https://checkstyle.org/checks/misc/newlineatendoffile.html -->
+    <module name="NewlineAtEndOfFile"/>
+
+    <!-- https://checkstyle.org/filters/suppressionfilter.html -->
+    <module name="SuppressionFilter">
+        <property name="file" value="${configDirectory}/suppressions.xml"/>
+    </module>
+
+    <!-- https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html -->
+    <module name="SuppressWithPlainTextCommentFilter"/>
+
+    <module name="TreeWalker">
+
+        <!-- https://checkstyle.org/checks/naming/abstractclassname.html -->
+        <module name="AbstractClassName"/>
+
+        <!-- https://checkstyle.org/checks/misc/arraytypestyle.html -->
+        <module name="ArrayTypeStyle"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/atclauseorder.html -->
+        <module name="AtclauseOrder">
+            <property name="tagOrder" value="@param, @return, @throws, @see, @since, @deprecated"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/misc/avoidescapedunicodecharacters.html -->
+        <module name="AvoidEscapedUnicodeCharacters"/>
+
+        <!-- https://checkstyle.org/checks/imports/avoidstarimport.html -->
+        <module name="AvoidStarImport"/>
+
+        <!-- https://checkstyle.org/checks/naming/classtypeparametername.html -->
+        <module name="ClassTypeParameterName">
+            <property name="format" value="^[A-Z]{1,}$"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/misc/commentsindentation.html -->
+        <module name="CommentsIndentation"/>
+
+        <!-- https://checkstyle.org/checks/naming/constantname.html -->
+        <module name="ConstantName"/>
+
+        <!-- https://checkstyle.org/checks/coding/constructorsdeclarationgrouping.html -->
+        <module name="ConstructorsDeclarationGrouping"/>
+
+        <!-- https://checkstyle.org/checks/imports/customimportorder.html -->
+        <module name="CustomImportOrder">
+            <property name="customImportOrderRules" value="THIRD_PARTY_PACKAGE, STANDARD_JAVA_PACKAGE, STATIC"/>
+            <property name="sortImportsInGroupAlphabetically" value="true"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/coding/defaultcomeslast.html -->
+        <module name="DefaultComesLast"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/emptylineseparator.html -->
+        <module name="EmptyLineSeparator">
+            <property name="allowMultipleEmptyLines" value="false"/>
+            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+            <property name="allowNoEmptyLineBetweenFields" value="true"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/coding/emptystatement.html -->
+        <module name="EmptyStatement"/>
+
+        <!-- https://checkstyle.org/checks/coding/fallthrough.html -->
+        <module name="FallThrough">
+            <property name="checkLastCaseGroup" value="true"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/design/finalclass.html -->
+        <module name="FinalClass"/>
+
+        <!-- https://checkstyle.org/checks/coding/finallocalvariable.html -->
+        <module name="FinalLocalVariable">
+            <property name="tokens" value="VARIABLE_DEF, PARAMETER_DEF"/>
+            <property name="validateEnhancedForLoopVariable" value="true"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/whitespace/genericwhitespace.html -->
+        <module name="GenericWhitespace"/>
+
+        <!-- https://checkstyle.org/checks/design/hideutilityclassconstructor.html -->
+        <module name="HideUtilityClassConstructor"/>
+
+        <!-- https://checkstyle.org/checks/imports/illegalimport.html -->
+        <module name="IllegalImport">
+            <property name="illegalClasses" value="org.jetbrains.annotations.Nullable, org.jetbrains.annotations.NotNull"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/misc/indentation.html -->
+        <module name="Indentation"/>
+
+        <!-- https://checkstyle.org/checks/naming/interfacetypeparametername.html -->
+        <module name="InterfaceTypeParameterName">
+            <property name="format" value="^[A-Z]{1,}$"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/javadoc/invalidjavadocposition.html -->
+        <module name="InvalidJavadocPosition"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/javadoccontentlocation.html -->
+        <module name="JavadocContentLocation"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/javadocmethod.html -->
+        <module name="JavadocMethod">
+            <property name="allowInlineReturn" value="true"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/javadoc/javadocmissingleadingasterisk.html -->
+        <module name="JavadocMissingLeadingAsterisk"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/javadocmissingwhitespaceafterasterisk.html -->
+        <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/javadocparagraph.html -->
+        <module name="JavadocParagraph"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/javadoctype.html -->
+        <module name="JavadocType"/>
+
+        <!-- https://checkstyle.org/checks/naming/lambdaparametername.html -->
+        <module name="LambdaParameterName"/>
+
+        <!-- https://checkstyle.org/checks/blocks/leftcurly.html -->
+        <module name="LeftCurly"/>
+
+        <!-- https://checkstyle.org/checks/naming/localfinalvariablename.html -->
+        <module name="LocalFinalVariableName"/>
+
+        <!-- https://checkstyle.org/checks/naming/localvariablename.html -->
+        <module name="LocalVariableName"/>
+
+        <!-- https://checkstyle.org/checks/naming/membername.html -->
+        <module name="MemberName"/>
+
+        <!-- https://checkstyle.org/checks/naming/methodname.html -->
+        <module name="MethodName"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/methodparampad.html -->
+        <module name="MethodParamPad"/>
+
+        <!-- https://checkstyle.org/checks/naming/methodtypeparametername.html -->
+        <module name="MethodTypeParameterName">
+            <property name="format" value="^[A-Z]{1,}$"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/annotation/missingdeprecated.html -->
+        <module name="MissingDeprecated"/>
+
+        <!-- https://checkstyle.org/checks/modifier/modifierorder.html -->
+        <module name="ModifierOrder"/>
+
+        <!-- https://checkstyle.org/checks/coding/multiplevariabledeclarations.html -->
+        <module name="MultipleVariableDeclarations"/>
+
+        <!-- https://checkstyle.org/checks/blocks/needbraces.html -->
+        <module name="NeedBraces">
+            <property name="allowSingleLineStatement" value="true"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/whitespace/nolinewrap.html -->
+        <module name="NoLineWrap"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/nowhitespaceafter -->
+        <module name="NoWhitespaceAfter">
+            <property name="allowLineBreaks" value="false"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/whitespace/nowhitespacebefore.html -->
+        <module name="NoWhitespaceBefore"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/nowhitespacebeforecasedefaultcolon.html -->
+        <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/nonemptyatclausedescription.html -->
+        <module name="NonEmptyAtclauseDescription"/>
+
+        <!-- https://checkstyle.org/checks/coding/onestatementperline.html -->
+        <module name="OneStatementPerLine"/>
+
+        <!-- https://checkstyle.org/checks/design/onetoplevelclass.html -->
+        <module name="OneTopLevelClass"/>
+
+        <!-- https://checkstyle.org/checks/misc/outertypefilename.html -->
+        <module name="OuterTypeFilename"/>
+
+        <!-- https://checkstyle.org/checks/coding/packagedeclaration.html -->
+        <module name="PackageDeclaration"/>
+
+        <!-- https://checkstyle.org/checks/naming/packagename.html -->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z]*)*$"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/naming/parametername.html -->
+        <module name="ParameterName"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/parenpad.html -->
+        <module name="ParenPad"/>
+
+        <!-- https://checkstyle.org/checks/naming/patternvariablename.html -->
+        <module name="PatternVariableName"/>
+
+        <!-- https://checkstyle.org/checks/naming/recordcomponentname.html -->
+        <module name="RecordComponentName">
+            <property name="format" value="^_?[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/naming/recordtypeparametername.html -->
+        <module name="RecordTypeParameterName">
+            <property name="format" value="^[A-Z]{1,}$"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/imports/redundantimport.html -->
+        <module name="RedundantImport"/>
+
+        <!-- https://checkstyle.org/checks/modifier/redundantmodifier.html -->
+        <module name="RedundantModifier"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/requireemptylinebeforeblocktaggroup.html -->
+        <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+
+        <!-- https://checkstyle.org/checks/coding/requirethis.html -->
+        <module name="RequireThis">
+            <property name="validateOnlyOverlapping" value="false"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/blocks/rightcurly.html -->
+        <module name="RightCurly"/>
+
+        <!-- https://checkstyle.org/checks/design/sealedshouldhavepermitslist.html -->
+        <module name="SealedShouldHavePermitsList"/>
+
+        <!-- https://checkstyle.org/checks/coding/simplifybooleanexpression.html -->
+        <module name="SimplifyBooleanExpression"/>
+
+        <!-- https://checkstyle.org/checks/coding/simplifybooleanreturn.html -->
+        <module name="SimplifyBooleanReturn"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/singlespaceseparator.html -->
+        <module name="SingleSpaceSeparator">
+            <property name="validateComments" value="true"/>
+        </module>
+
+        <!-- https://checkstyle.org/checks/naming/staticvariablename.html -->
+        <module name="StaticVariableName"/>
+
+        <!-- https://checkstyle.org/checks/coding/stringliteralequality.html -->
+        <module name="StringLiteralEquality"/>
+
+        <!-- https://checkstyle.org/checks/naming/typename.html -->
+        <module name="TypeName"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/typecastparenpad.html -->
+        <module name="TypecastParenPad"/>
+
+        <!-- https://checkstyle.org/checks/imports/unusedimports.html -->
+        <module name="UnusedImports"/>
+
+        <!-- https://checkstyle.org/checks/coding/unusedlocalvariable.html -->
+        <module name="UnusedLocalVariable"/>
+
+        <!-- https://checkstyle.org/checks/misc/upperell.html -->
+        <module name="UpperEll"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/whitespaceafter.html -->
+        <module name="WhitespaceAfter"/>
+
+        <!-- https://checkstyle.org/checks/whitespace/whitespacearound.html -->
+        <module name="WhitespaceAround"/>
+
+    </module>
+
+</module>
