@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.jmatt"
-version = "1.5.0-SNAPSHOT"
+version = "2.0.0-SNAPSHOT"
 
 repositories {
     maven("https://repo.papermc.io/repository/maven-public/") {
