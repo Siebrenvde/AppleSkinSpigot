@@ -1,3 +1,5 @@
+2.0.0
+    - Increased minimum requirements to 1.20.5 and Java 21
 1.4.0
     - fixed Spigot compatibility
     - only sync when there's any players online
