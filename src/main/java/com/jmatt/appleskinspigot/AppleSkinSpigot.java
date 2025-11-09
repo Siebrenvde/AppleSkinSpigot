@@ -21,10 +21,6 @@ public final class AppleSkinSpigot extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        final String[] version = getServer().getBukkitVersion().split("-")[0].split("\\.");
-        final int minor = Integer.parseInt(version[1]);
-        final int patch = version.length > 2 ? Integer.parseInt(version[2]) : 0;
-
         final PluginManager manager = getServer().getPluginManager();
         manager.registerEvents(new LoginListener(), this);
 
@@ -33,7 +29,7 @@ public final class AppleSkinSpigot extends JavaPlugin {
         messenger.registerOutgoingPluginChannel(this, EXHAUSTION_KEY);
 
         // https://github.com/squeek502/AppleSkin/commit/ee4d5316138a5ab4b2406753d4ed717e12f550dd
-        if (minor > 21 || (minor == 21 && patch >= 3)) {
+        if (ServerVersion.isHigherThanOrEqualTo(21, 3)) {
             messenger.registerOutgoingPluginChannel(this, NATURAL_REGENERATION_KEY);
             manager.registerEvents(new GameRuleListener(), this);
             if (this.isPaper()) manager.registerEvents(new GameRuleListener.Paper(), this);
