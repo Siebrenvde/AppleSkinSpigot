@@ -41,8 +41,8 @@ public final class SyncTask extends BukkitRunnable {
             player.sendPluginMessage(
                 AppleSkinSpigot.getInstance(),
                 AppleSkinSpigot.EXHAUSTION_KEY,
-                ByteBuffer.allocate(Float.BYTES).putFloat(exhaustion).array())
-            ;
+                ByteBuffer.allocate(Float.BYTES).putFloat(exhaustion).array()
+            );
             this.previousExhaustionLevels.put(player.getUniqueId(), exhaustion);
         }
     }
