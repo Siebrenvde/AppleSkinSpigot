@@ -3,6 +3,7 @@ package com.jmatt.appleskinspigot;
 import io.papermc.paper.event.world.WorldGameRuleChangeEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
+import org.bukkit.GameRules;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -13,6 +14,17 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import java.nio.ByteBuffer;
 
 public final class GameRuleListener implements Listener {
+
+    private static final GameRule<Boolean> NATURAL_REGENERATION;
+
+    static {
+        if (ServerVersion.isHigherThanOrEqualTo(21, 11)) {
+            NATURAL_REGENERATION = GameRules.NATURAL_HEALTH_REGENERATION;
+        } else {
+            //noinspection removal
+            NATURAL_REGENERATION = GameRule.NATURAL_REGENERATION;
+        }
+    }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(final PlayerJoinEvent event) {
@@ -33,7 +45,7 @@ public final class GameRuleListener implements Listener {
     private void sendNaturalRegenState(final Player player) {
         sendNaturalRegenState(
             player,
-            Boolean.TRUE.equals(player.getWorld().getGameRuleValue(GameRule.NATURAL_REGENERATION))
+            Boolean.TRUE.equals(player.getWorld().getGameRuleValue(NATURAL_REGENERATION))
         );
     }
 
@@ -49,7 +61,7 @@ public final class GameRuleListener implements Listener {
 
         @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
         public void onGameRuleChange(final WorldGameRuleChangeEvent event) {
-            if (event.getGameRule() != GameRule.NATURAL_REGENERATION) return;
+            if (event.getGameRule() != NATURAL_REGENERATION) return;
             event.getWorld().getPlayers().forEach(player -> {
                 sendNaturalRegenState(player, Boolean.parseBoolean(event.getValue()));
             });
