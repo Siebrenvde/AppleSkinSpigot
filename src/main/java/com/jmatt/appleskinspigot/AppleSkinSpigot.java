@@ -4,9 +4,9 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.Messenger;
 
-public class AppleSkinSpigotPlugin extends JavaPlugin {
+public class AppleSkinSpigot extends JavaPlugin {
 
-    public static AppleSkinSpigotPlugin INSTANCE;
+    public static AppleSkinSpigot INSTANCE;
 
     public static final String SATURATION_KEY = "appleskin:saturation";
     public static final String EXHAUSTION_KEY = "appleskin:exhaustion";

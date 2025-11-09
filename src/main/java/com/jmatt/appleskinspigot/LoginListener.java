@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 public class LoginListener implements Listener {
 
-    private final AppleSkinSpigotPlugin plugin;
+    private final AppleSkinSpigot plugin;
 
-    LoginListener(AppleSkinSpigotPlugin plugin) {
+    LoginListener(AppleSkinSpigot plugin) {
         this.plugin = plugin;
     }
 

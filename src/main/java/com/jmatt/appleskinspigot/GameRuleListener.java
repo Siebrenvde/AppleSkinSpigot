@@ -17,7 +17,7 @@ public class GameRuleListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
         Bukkit.getScheduler().runTaskLater(
-            AppleSkinSpigotPlugin.INSTANCE,
+            AppleSkinSpigot.INSTANCE,
             () -> { if (event.getPlayer().isOnline()) sendNaturalRegenState(event.getPlayer()); },
             20L
         );
@@ -37,8 +37,8 @@ public class GameRuleListener implements Listener {
 
     private static void sendNaturalRegenState(Player player, boolean state) {
         player.sendPluginMessage(
-            AppleSkinSpigotPlugin.INSTANCE,
-            AppleSkinSpigotPlugin.NATURAL_REGENERATION_KEY,
+            AppleSkinSpigot.INSTANCE,
+            AppleSkinSpigot.NATURAL_REGENERATION_KEY,
             ByteBuffer.allocate(1).put((byte) (state ? 1 : 0)).array()
         );
     }

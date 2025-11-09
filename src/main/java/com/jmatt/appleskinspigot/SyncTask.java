@@ -11,11 +11,11 @@ public class SyncTask extends BukkitRunnable {
 
     private static final float MINIMUM_EXHAUSTION_CHANGE_THRESHOLD = 0.01F;
 
-    private final AppleSkinSpigotPlugin plugin;
+    private final AppleSkinSpigot plugin;
     private final Map<UUID, Float> previousSaturationLevels;
     private final Map<UUID, Float> previousExhaustionLevels;
 
-    SyncTask(AppleSkinSpigotPlugin plugin) {
+    SyncTask(AppleSkinSpigot plugin) {
         this.plugin = plugin;
         previousSaturationLevels = new HashMap<>();
         previousExhaustionLevels = new HashMap<>();
@@ -32,14 +32,14 @@ public class SyncTask extends BukkitRunnable {
         float saturation = player.getSaturation();
         Float previousSaturation = previousSaturationLevels.get(player.getUniqueId());
         if(previousSaturation == null || saturation != previousSaturation) {
-            player.sendPluginMessage(plugin, AppleSkinSpigotPlugin.SATURATION_KEY, ByteBuffer.allocate(Float.BYTES).putFloat(saturation).array());
+            player.sendPluginMessage(plugin, AppleSkinSpigot.SATURATION_KEY, ByteBuffer.allocate(Float.BYTES).putFloat(saturation).array());
             previousSaturationLevels.put(player.getUniqueId(), saturation);
         }
 
         float exhaustion = player.getExhaustion();
         Float previousExhaustion = previousExhaustionLevels.get(player.getUniqueId());
         if(previousExhaustion == null || Math.abs(exhaustion - previousExhaustion) >= MINIMUM_EXHAUSTION_CHANGE_THRESHOLD) {
-            player.sendPluginMessage(plugin, AppleSkinSpigotPlugin.EXHAUSTION_KEY, ByteBuffer.allocate(Float.BYTES).putFloat(exhaustion).array());
+            player.sendPluginMessage(plugin, AppleSkinSpigot.EXHAUSTION_KEY, ByteBuffer.allocate(Float.BYTES).putFloat(exhaustion).array());
             previousExhaustionLevels.put(player.getUniqueId(), exhaustion);
         }
     }
