@@ -3,16 +3,19 @@ package com.jmatt.appleskinspigot;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.Messenger;
+import org.jspecify.annotations.Nullable;
+
+import java.util.Objects;
 
 public final class AppleSkinSpigot extends JavaPlugin {
 
-    private static AppleSkinSpigot instance;
+    private static @Nullable AppleSkinSpigot instance;
 
     public static final String SATURATION_KEY = "appleskin:saturation";
     public static final String EXHAUSTION_KEY = "appleskin:exhaustion";
     public static final String NATURAL_REGENERATION_KEY = "appleskin:natural_regeneration";
 
-    private static SyncTask syncTask = null;
+    private static @Nullable SyncTask syncTask = null;
 
     @Override
     public void onEnable() {
@@ -55,7 +58,7 @@ public final class AppleSkinSpigot extends JavaPlugin {
     private static void createSyncTask() {
         cancelSyncTask();
         syncTask = new SyncTask();
-        syncTask.runTaskTimer(instance, 0L, 1L);
+        syncTask.runTaskTimer(getInstance(), 0L, 1L);
     }
 
     /**
@@ -74,7 +77,7 @@ public final class AppleSkinSpigot extends JavaPlugin {
     }
 
     public static AppleSkinSpigot getInstance() {
-        return instance;
+        return Objects.requireNonNull(instance);
     }
 
     /**
