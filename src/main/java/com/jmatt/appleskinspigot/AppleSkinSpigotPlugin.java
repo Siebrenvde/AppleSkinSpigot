@@ -8,8 +8,8 @@ public class AppleSkinSpigotPlugin extends JavaPlugin {
 
     public static AppleSkinSpigotPlugin INSTANCE;
 
-    public static String SATURATION_KEY = "appleskin:saturation";
-    public static String EXHAUSTION_KEY = "appleskin:exhaustion";
+    public static final String SATURATION_KEY = "appleskin:saturation";
+    public static final String EXHAUSTION_KEY = "appleskin:exhaustion";
     public static final String NATURAL_REGENERATION_KEY = "appleskin:natural_regeneration";
 
     private SyncTask syncTask = null;
@@ -21,11 +21,6 @@ public class AppleSkinSpigotPlugin extends JavaPlugin {
         String[] version = getServer().getBukkitVersion().split("-")[0].split("\\.");
         int minor = Integer.parseInt(version[1]);
         int patch = version.length > 2 ? Integer.parseInt(version[2]) : 0;
-
-        if(minor < 20 || (minor == 20 && patch <= 4)) {
-            SATURATION_KEY = "appleskin:saturation_sync";
-            EXHAUSTION_KEY = "appleskin:exhaustion_sync";
-        }
 
         PluginManager manager = getServer().getPluginManager();
         manager.registerEvents(new LoginListener(this), this);
