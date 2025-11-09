@@ -10,27 +10,23 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LoginListener implements Listener {
+import static com.jmatt.appleskinspigot.AppleSkinSpigot.cancelSyncTask;
+import static com.jmatt.appleskinspigot.AppleSkinSpigot.getOrCreateSyncTask;
 
-    private final AppleSkinSpigot plugin;
-
-    LoginListener(final AppleSkinSpigot plugin) {
-        this.plugin = plugin;
-    }
+public final class LoginListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(final PlayerJoinEvent event) {
-        if (this.plugin.syncTask() == null) this.plugin.createSyncTask();
-        this.plugin.syncTask().removePreviousLevels(event.getPlayer().getUniqueId());
+        getOrCreateSyncTask().removePreviousLevels(event.getPlayer().getUniqueId());
     }
 
     @EventHandler
     public void onPlayerLeave(final PlayerQuitEvent event) {
-        this.plugin.syncTask().removePreviousLevels(event.getPlayer().getUniqueId());
+        getOrCreateSyncTask().removePreviousLevels(event.getPlayer().getUniqueId());
         final List<Player> players = Bukkit.getOnlinePlayers().stream()
             .filter(p -> !p.equals(event.getPlayer()))
             .collect(Collectors.toList());
-        if (players.isEmpty()) this.plugin.cancelSyncTask();
+        if (players.isEmpty()) cancelSyncTask();
     }
 
 }

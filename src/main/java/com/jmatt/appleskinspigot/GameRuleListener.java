@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.nio.ByteBuffer;
 
-public class GameRuleListener implements Listener {
+public final class GameRuleListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(final PlayerJoinEvent event) {

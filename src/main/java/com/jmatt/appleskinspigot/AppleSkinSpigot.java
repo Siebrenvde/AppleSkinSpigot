@@ -4,7 +4,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.Messenger;
 
-public class AppleSkinSpigot extends JavaPlugin {
+public final class AppleSkinSpigot extends JavaPlugin {
 
     private static AppleSkinSpigot instance;
 
@@ -12,7 +12,7 @@ public class AppleSkinSpigot extends JavaPlugin {
     public static final String EXHAUSTION_KEY = "appleskin:exhaustion";
     public static final String NATURAL_REGENERATION_KEY = "appleskin:natural_regeneration";
 
-    private SyncTask syncTask = null;
+    private static SyncTask syncTask = null;
 
     @Override
     public void onEnable() {
@@ -23,7 +23,7 @@ public class AppleSkinSpigot extends JavaPlugin {
         final int patch = version.length > 2 ? Integer.parseInt(version[2]) : 0;
 
         final PluginManager manager = getServer().getPluginManager();
-        manager.registerEvents(new LoginListener(this), this);
+        manager.registerEvents(new LoginListener(), this);
 
         final Messenger messenger = getServer().getMessenger();
         messenger.registerOutgoingPluginChannel(this, SATURATION_KEY);
@@ -38,10 +38,13 @@ public class AppleSkinSpigot extends JavaPlugin {
     }
 
     /**
-     * {@return the current sync task}
+     * Returns the current sync task or creates a new one if it isn't running
+     *
+     * @return the current sync task
      */
-    public SyncTask syncTask() {
-        return this.syncTask;
+    public static SyncTask getOrCreateSyncTask() {
+        if (syncTask == null) createSyncTask();
+        return syncTask;
     }
 
     /**
@@ -49,25 +52,25 @@ public class AppleSkinSpigot extends JavaPlugin {
      *
      * <p>If a sync task already exists, it will be cancelled</p>
      */
-    public void createSyncTask() {
-        this.cancelSyncTask();
-        this.syncTask = new SyncTask(this);
-        this.syncTask.runTaskTimer(this, 0L, 1L);
+    private static void createSyncTask() {
+        cancelSyncTask();
+        syncTask = new SyncTask();
+        syncTask.runTaskTimer(instance, 0L, 1L);
     }
 
     /**
      * Cancels the current sync task
      */
-    public void cancelSyncTask() {
-        if (this.syncTask != null) {
-            this.syncTask.cancel();
-            this.syncTask = null;
+    public static void cancelSyncTask() {
+        if (syncTask != null) {
+            syncTask.cancel();
+            syncTask = null;
         }
     }
 
     @Override
     public void onDisable() {
-        this.cancelSyncTask();
+        cancelSyncTask();
     }
 
     public static AppleSkinSpigot getInstance() {
