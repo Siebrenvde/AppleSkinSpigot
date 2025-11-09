@@ -1,11 +1,11 @@
 plugins {
     id("java")
-    id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.2.0"
-    id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.3.1"
+    id("xyz.jpenilla.run-paper") version "3.0.2"
 }
 
 group = "com.jmatt"
-version = "1.4.0"
+version = "1.5.0-SNAPSHOT"
 
 repositories {
     maven("https://repo.papermc.io/repository/maven-public/") {
@@ -26,7 +26,7 @@ bukkitPluginYaml {
 }
 
 tasks.runServer {
-    minecraftVersion("1.21.5")
+    minecraftVersion("1.21.8")
 }
 
 val targetJavaVersion = 16
