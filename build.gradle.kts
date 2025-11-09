@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("net.kyori.indra") version "4.0.0"
     id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.3.1"
     id("xyz.jpenilla.run-paper") version "3.0.2"
 }
@@ -29,20 +30,12 @@ tasks.runServer {
     minecraftVersion("1.21.8")
 }
 
-val targetJavaVersion = 16
-java {
-    val javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+indra {
+    javaVersions {
+        target(21)
     }
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible) {
-        options.release.set(targetJavaVersion)
-    }
+tasks.withType<Jar> {
+    archiveBaseName = project.name
 }
