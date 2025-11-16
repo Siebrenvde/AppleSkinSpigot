@@ -20,7 +20,7 @@ dependencies {
 }
 
 bukkitPluginYaml {
-    main = "com.jmatt.appleskinspigot.AppleSkinSpigotPlugin"
+    main = "com.jmatt.appleskinspigot.AppleSkinSpigot"
     authors.add("jmatt")
     authors.add("Siebrenvde")
     apiVersion = "1.20.5"
