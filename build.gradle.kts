@@ -25,9 +25,14 @@ bukkitPluginYaml {
     authors.add("Siebrenvde")
     apiVersion = "1.20.5"
     website = "https://github.com/Siebrenvde/AppleSkinSpigot"
+    foliaSupported = true
 }
 
 tasks.runServer {
+    minecraftVersion("1.21.8")
+}
+
+runPaper.folia.registerTask {
     minecraftVersion("1.21.8")
 }
 

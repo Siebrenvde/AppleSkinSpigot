@@ -5,9 +5,9 @@ import org.bukkit.entity.Player;
 
 import java.nio.ByteBuffer;
 
-public final class SyncTask implements Runnable {
+public sealed class SyncTask implements Runnable permits FoliaSyncTask {
 
-    public static final long DELAY_TICKS = 0;
+    public static final long DELAY_TICKS = 1;
     public static final long PERIOD_TICKS = 1;
 
     private static final float MINIMUM_EXHAUSTION_CHANGE_THRESHOLD = 0.01F;

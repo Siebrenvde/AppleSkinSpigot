@@ -30,7 +30,7 @@ public final class AppleSkinSpigot extends JavaPlugin {
         if (ServerVersion.isHigherThanOrEqualTo(21, 3)) {
             messenger.registerOutgoingPluginChannel(this, NATURAL_REGENERATION_KEY);
             manager.registerEvents(new GameRuleListener(), this);
-            if (this.isPaper()) manager.registerEvents(new GameRuleListener.Paper(), this);
+            if (isPaper()) manager.registerEvents(new GameRuleListener.Paper(), this);
         }
     }
 
@@ -43,7 +43,7 @@ public final class AppleSkinSpigot extends JavaPlugin {
      *
      * @return <code>true</code> if the server is a Paper server
      */
-    private boolean isPaper() {
+    public static boolean isPaper() {
         try {
             Class.forName("io.papermc.paper.configuration.Configuration");
             return true;
