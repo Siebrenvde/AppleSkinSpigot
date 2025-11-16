@@ -14,7 +14,7 @@ public final class ServerVersion {
     }
 
     public static boolean isHigherThanOrEqualTo(final int minor, final int patch) {
-        return minor > MINOR || (minor == MINOR && patch >= PATCH);
+        return MINOR > minor || (MINOR == minor && PATCH >= patch);
     }
 
     private ServerVersion() {
