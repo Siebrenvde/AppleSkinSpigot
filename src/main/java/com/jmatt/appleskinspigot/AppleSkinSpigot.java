@@ -15,14 +15,12 @@ public final class AppleSkinSpigot extends JavaPlugin {
     public static final String EXHAUSTION_KEY = "appleskin:exhaustion";
     public static final String NATURAL_REGENERATION_KEY = "appleskin:natural_regeneration";
 
-    private static @Nullable SyncTask syncTask = null;
-
     @Override
     public void onEnable() {
         instance = this;
 
         final PluginManager manager = getServer().getPluginManager();
-        manager.registerEvents(new LoginListener(), this);
+        manager.registerEvents(new ChannelListener(), this);
 
         final Messenger messenger = getServer().getMessenger();
         messenger.registerOutgoingPluginChannel(this, SATURATION_KEY);
@@ -34,42 +32,6 @@ public final class AppleSkinSpigot extends JavaPlugin {
             manager.registerEvents(new GameRuleListener(), this);
             if (this.isPaper()) manager.registerEvents(new GameRuleListener.Paper(), this);
         }
-    }
-
-    /**
-     * Returns the current sync task or creates a new one if it isn't running
-     *
-     * @return the current sync task
-     */
-    public static SyncTask getOrCreateSyncTask() {
-        if (syncTask == null) createSyncTask();
-        return syncTask;
-    }
-
-    /**
-     * Creates a new sync task and schedules it
-     *
-     * <p>If a sync task already exists, it will be cancelled</p>
-     */
-    private static void createSyncTask() {
-        cancelSyncTask();
-        syncTask = new SyncTask();
-        syncTask.runTaskTimer(getInstance(), 0L, 1L);
-    }
-
-    /**
-     * Cancels the current sync task
-     */
-    public static void cancelSyncTask() {
-        if (syncTask != null) {
-            syncTask.cancel();
-            syncTask = null;
-        }
-    }
-
-    @Override
-    public void onDisable() {
-        cancelSyncTask();
     }
 
     public static AppleSkinSpigot getInstance() {
