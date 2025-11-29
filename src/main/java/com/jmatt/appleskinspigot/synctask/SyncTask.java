@@ -13,13 +13,11 @@ public sealed class SyncTask implements Runnable permits FoliaSyncTask {
     private static final float MINIMUM_EXHAUSTION_CHANGE_THRESHOLD = 0.01F;
 
     private final Player player;
-    private float previousSaturation;
-    private float previousExhaustion;
+    private float previousSaturation = -1;
+    private float previousExhaustion = -1;
 
     public SyncTask(final Player player) {
         this.player = player;
-        this.previousSaturation = player.getSaturation();
-        this.previousExhaustion = player.getExhaustion();
     }
 
     @Override
