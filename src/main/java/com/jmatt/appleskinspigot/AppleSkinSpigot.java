@@ -30,7 +30,7 @@ public final class AppleSkinSpigot extends JavaPlugin {
         messenger.registerOutgoingPluginChannel(this, EXHAUSTION_KEY);
 
         // https://github.com/squeek502/AppleSkin/commit/ee4d5316138a5ab4b2406753d4ed717e12f550dd
-        if (ServerVersion.isHigherThanOrEqualTo(21, 3)) {
+        if (ServerVersion.isHigherThanOrEqualTo(1, 21, 3)) {
             messenger.registerOutgoingPluginChannel(this, NATURAL_REGENERATION_KEY);
             manager.registerEvents(new GameRuleListener(), this);
             if (isPaper()) manager.registerEvents(new GameRuleListener.Paper(), this);

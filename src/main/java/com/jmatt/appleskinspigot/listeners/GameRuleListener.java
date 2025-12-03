@@ -24,7 +24,7 @@ public final class GameRuleListener implements Listener {
 
     @SuppressWarnings({"removal", "unchecked"})
     private static GameRule<Boolean> getGameRule() {
-        if (ServerVersion.isHigherThanOrEqualTo(21, 11)) {
+        if (ServerVersion.isHigherThanOrEqualTo(1, 21, 11)) {
             if (AppleSkinSpigot.isPaper()) {
                 return GameRules.NATURAL_HEALTH_REGENERATION;
             } else {
