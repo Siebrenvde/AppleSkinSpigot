@@ -1,5 +1,6 @@
-package com.jmatt.appleskinspigot;
+package com.jmatt.appleskinspigot.listeners;
 
+import com.jmatt.appleskinspigot.AppleSkinSpigot;
 import io.papermc.paper.event.world.WorldGameRuleChangeEvent;
 import org.bukkit.GameRule;
 import org.bukkit.entity.Player;

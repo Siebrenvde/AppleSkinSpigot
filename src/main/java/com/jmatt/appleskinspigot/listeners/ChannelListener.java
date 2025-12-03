@@ -1,5 +1,6 @@
-package com.jmatt.appleskinspigot;
+package com.jmatt.appleskinspigot.listeners;
 
+import com.jmatt.appleskinspigot.AppleSkinSpigot;
 import com.jmatt.appleskinspigot.synctask.BukkitSyncTask;
 import com.jmatt.appleskinspigot.synctask.FoliaSyncTask;
 import org.bukkit.event.EventHandler;

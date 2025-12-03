@@ -1,4 +1,4 @@
-package com.jmatt.appleskinspigot;
+package com.jmatt.appleskinspigot.util;
 
 import org.bukkit.Bukkit;
 
