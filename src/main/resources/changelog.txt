@@ -1,6 +1,8 @@
 2.0.0
-    - Increased minimum requirements to 1.20.5 and Java 21
-    - Added support for Folia
+    - increased minimum requirements to 1.20.5 and Java 21
+    - added support for Folia
+    - added support for 1.21.11
+    - prepared for upcoming Minecraft version numbering change
 1.4.0
     - fixed Spigot compatibility
     - only sync when there's any players online
