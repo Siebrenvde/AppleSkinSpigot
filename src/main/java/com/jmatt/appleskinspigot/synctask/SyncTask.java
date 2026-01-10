@@ -12,7 +12,7 @@ public sealed class SyncTask implements Runnable permits FoliaSyncTask {
 
     private static final float MINIMUM_EXHAUSTION_CHANGE_THRESHOLD = 0.01F;
 
-    private final Player player;
+    protected final Player player;
     private float previousSaturation = -1;
     private float previousExhaustion = -1;
 

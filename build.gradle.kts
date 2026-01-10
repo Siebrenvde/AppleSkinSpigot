@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.jmatt"
-version = "2.0.0"
+version = "2.0.1-SNAPSHOT"
 
 repositories {
     maven("https://repo.papermc.io/repository/maven-public/") {
@@ -29,11 +29,11 @@ bukkitPluginYaml {
 }
 
 tasks.runServer {
-    minecraftVersion("1.21.10")
+    minecraftVersion("1.21.11")
 }
 
 runPaper.folia.registerTask {
-    minecraftVersion("1.21.8")
+    minecraftVersion("1.21.11")
 }
 
 indra {

@@ -7,10 +7,14 @@ public final class FoliaSyncTask extends SyncTask {
 
     public FoliaSyncTask(final Player player) {
         super(player);
-        player.getScheduler().runAtFixedRate(
+        this.tryScheduleTask();
+    }
+
+    private void tryScheduleTask() {
+        this.player.getScheduler().runAtFixedRate(
             AppleSkinSpigot.getInstance(),
             ignored -> this.run(),
-            null,
+            this::tryScheduleTask,
             DELAY_TICKS,
             PERIOD_TICKS
         );

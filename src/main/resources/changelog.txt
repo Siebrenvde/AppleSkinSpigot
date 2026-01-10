@@ -1,3 +1,5 @@
+2.0.1
+    - fixed saturation and exhaustion not being synced after death on Paper/Folia
 2.0.0
     - increased minimum requirements to 1.20.5 and Java 21
     - added support for Folia
