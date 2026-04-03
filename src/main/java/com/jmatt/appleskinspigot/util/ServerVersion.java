@@ -2,17 +2,24 @@ package com.jmatt.appleskinspigot.util;
 
 import org.bukkit.Bukkit;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public final class ServerVersion {
+
+    private static final Pattern VERSION_PATTERN = Pattern.compile("^(\\d+)\\.(\\d+)(?:\\.(\\d+))?");
 
     private static final int YEAR;
     private static final int DROP;
     private static final int HOTFIX;
 
     static {
-        final String[] version = Bukkit.getServer().getBukkitVersion().split("-")[0].split("\\.");
-        YEAR = Integer.parseInt(version[0]);
-        DROP = Integer.parseInt(version[1]);
-        HOTFIX = version.length > 2 ? Integer.parseInt(version[2]) : 0;
+        final Matcher matcher = VERSION_PATTERN.matcher(Bukkit.getServer().getBukkitVersion());
+        if (!matcher.find()) throw new IllegalStateException("Failed to determine server version");
+
+        YEAR = Integer.parseInt(matcher.group(1));
+        DROP = Integer.parseInt(matcher.group(2));
+        HOTFIX = matcher.group(3) != null ? Integer.parseInt(matcher.group(3)) : 0;
     }
 
     public static boolean isHigherThanOrEqualTo(final int year, final int drop, final int hotfix) {
