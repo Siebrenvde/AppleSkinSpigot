@@ -6,9 +6,6 @@ plugins {
     id("xyz.jpenilla.run-paper") version "3.0.2"
 }
 
-group = "com.jmatt"
-version = "2.0.2-SNAPSHOT"
-
 repositories {
     maven("https://repo.papermc.io/repository/maven-public/") {
         name = "papermc"
@@ -40,7 +37,7 @@ indra {
     javaVersions {
         target(21)
     }
-    checkstyle("12.1.1")
+    checkstyle("13.4.0")
 }
 
 tasks.withType<Jar> {
