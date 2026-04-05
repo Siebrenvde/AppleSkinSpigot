@@ -26,7 +26,7 @@ bukkitPluginYaml {
 }
 
 tasks.runServer {
-    minecraftVersion("1.21.11")
+    minecraftVersion("26.1.1")
 }
 
 runPaper.folia.registerTask {
@@ -36,6 +36,7 @@ runPaper.folia.registerTask {
 indra {
     javaVersions {
         target(21)
+        minimumToolchain(25)
     }
     checkstyle("13.4.0")
 }
