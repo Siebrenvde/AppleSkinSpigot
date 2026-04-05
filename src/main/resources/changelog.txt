@@ -1,3 +1,5 @@
+2.0.2
+    - fixed the version check for future Paper versions
 2.0.1
     - fixed saturation and exhaustion not being synced after death on Paper/Folia
 2.0.0
